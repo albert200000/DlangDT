@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="io.github.albert200000.dlangdt.common.preference.CategoryPreferencePage"
+            id="io.github.albert200000.dlangdt.common.preference.CategoryPreferencePage"
+            name="DDT">
+      </page>
+      <page
+            category="io.github.albert200000.dlangdt.common.preference.CategoryPreferencePage"
+            class="io.github.albert200000.dlangdt.common.preference.DEnvPreferencePage"
+            id="io.github.albert200000.dlangdt.common.preference.DEnvPreferencePage"
+            name="D Env">
+      </page>
+   </extension>
+      <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegateDescription="Launch d application"
+            delegateName="D Launcher"
+            id="io.github.albert200000.dlangdt.common.LocalApplicationLaunchConfigurationType"
+            name="D Application"
+            public="true">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="io.github.albert200000.dlangdt.common.LocalApplicationLaunchConfigurationType"
+            icon="icons/d.ico"
+            id="io.github.albert200000.dlangdt.common.LocalApplicationLaunchConfigurationTypeImage">
+      </launchConfigurationTypeImage>
+   </extension>
+</plugin>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension
+		point="org.eclipse.core.contenttype.contentTypes">
+		<content-type
+			id="io.github.albert200000.dlangdt.gosourcefile"
+			name="D"
+			file-extensions="d,di,dh"
+			base-type="org.eclipse.core.runtime.text"
+			default-charset="UTF-8">
+		</content-type>
+	</extension>
+	<extension
+		id="io.github.albert200000.dlangdt.DSourceEditor"
+		name="D Source Editor"
+		point="org.eclipse.ui.editors">
+		<editorContentTypeBinding
+			contentTypeId="io.github.albert200000.dlangdt.gosourcefile"
+			editorId="org.eclipse.ui.genericeditor.GenericEditor">
+		</editorContentTypeBinding>
+	</extension>
+	<extension
+		point="org.eclipse.tm4e.registry.grammars">
+		<grammar
+			path="grammars/d.tmLanguage.json"
+			scopeName="source.d">
+		</grammar>
+		<scopeNameContentTypeBinding
+			contentTypeId="io.github.albert200000.dlangdt.gosourcefile"
+			scopeName="source.d">
+		</scopeNameContentTypeBinding>
+	</extension>
+	<extension
+		point="org.eclipse.tm4e.languageconfiguration.languageConfigurations">
+		<languageConfiguration
+			contentTypeId="io.github.albert200000.dlangdt.gosourcefile"
+			path="language-configurations/d.language-configuration.json">
+		</languageConfiguration>
+	</extension>
+	<extension
+		point="org.eclipse.tm4e.ui.samples">
+		<sample
+			name="D Sample"
+			scopeName="source.d"
+			path="src/io/github/albert200000/dlangdt/editor/snippets/d/helloworld.d">
+		</sample>
+	</extension>
+	<extension
+		point="org.eclipse.lsp4e.languageServer">
+		<server
+			class="io.github.albert200000.dlangdt.editor.lsp4e.server.ServeDStreamConnectionProvider"
+			id="io.github.albert200000.dlangdt.editor.lsp4e.server.served"
+			label="D Language Server">
+		</server>
+		<contentTypeMapping
+			contentType="io.github.albert200000.dlangdt.gosourcefile"
+			id="io.github.albert200000.dlangdt.editor.lsp4e.server.served">
+		</contentTypeMapping>
+	</extension>
+	<extension
+		point="org.eclipse.ui.workbench.texteditor.hyperlinkDetectors">
+		<hyperlinkDetector
+			activate="true"
+			class="io.github.albert200000.dlangdt.editor.lsp4e.cilent.operations.declaration.DDTOpenDeclarationHyperlinkDetector"
+			description="DDT D Source Editor Hyperlink Detector"
+			id="io.github.albert200000.dlangdt.editor.d.HyperlinkDetector"
+			name="DDTEditorHyperlinkDetector"
+			targetId="org.eclipse.ui.genericeditor.GenericEditor">
+		</hyperlinkDetector>
+	</extension>
+	<extension
+		point="org.eclipse.ui.preferencePages">
+		<page
+			category="io.github.albert200000.dlangdt.common.preference.CategoryPreferencePage"
+			class="io.github.albert200000.dlangdt.editor.preference.ServeDPreferencePage"
+			id="io.github.albert200000.dlangdt.editor.preference.ServeDPreferencePage"
+			name="Serve-d">
+		</page>
+	</extension>
+	<extension
+		point="org.eclipse.ui.genericeditor.icons">
+		<icon
+			contentType="io.github.albert200000.dlangdt.gosourcefile"
+			icon="icons/dSourceEditorIcon.png">
+		</icon>
+	</extension>
+
+</plugin>

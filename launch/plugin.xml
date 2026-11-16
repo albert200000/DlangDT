@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension
+		point="org.eclipse.debug.core.launchDelegates">
+		<launchDelegate
+			delegate="io.github.albert200000.dlangdt.launch.LocalApplicationLaunchDelegate"
+			delegateDescription="Execute the specified process"
+			id="io.github.albert200000.dlangdt.launch.LocalApplicationLaunchDelegate"
+			modes="run"
+			name="Local D Application"
+			type="io.github.albert200000.dlangdt.common.LocalApplicationLaunchConfigurationType">
+		</launchDelegate>
+
+	</extension>
+
+	<extension
+		point="org.eclipse.debug.ui.launchConfigurationTabs">
+		<!-- Run launch tabs-->
+		<tab
+			id="io.github.albert200000.dlangdt.launch.runApplicationLaunch.mainTab"
+			group="io.github.albert200000.dlangdt.launch.LocalApplicationLaunchConfigurationTabGroup"
+			name="Main"
+			class="io.github.albert200000.dlangdt.launch.ui.tabs.MainTab">
+		</tab>
+		<tab
+			id="io.github.albert200000.dlangdt.launch.runApplicationLaunch.argumentsTab"
+			group="io.github.albert200000.dlangdt.launch.LocalApplicationLaunchConfigurationTabGroup"
+			name="Arguments"
+			class="io.github.albert200000.dlangdt.launch.ui.tabs.ArgumentsTab">
+			<placement
+				after="io.github.albert200000.dlangdt.launch.runApplicationLaunch.mainTab" />
+		</tab>
+		<tab
+			id="io.github.albert200000.dlangdt.launch.runApplicationLaunch.environmentTab"
+			group="io.github.albert200000.dlangdt.launch.LocalApplicationLaunchConfigurationTabGroup"
+			name="Environment"
+			class="org.eclipse.debug.ui.EnvironmentTab">
+			<placement
+				after="io.github.albert200000.dlangdt.launch.runApplicationLaunch.argumentsTab" />
+		</tab>
+		<tab
+			id="io.github.albert200000.dlangdt.launch.runApplicationLaunch.commonTab"
+			group="io.github.albert200000.dlangdt.launch.LocalApplicationLaunchConfigurationTabGroup"
+			name="Common"
+			class="org.eclipse.debug.ui.CommonTab">
+			<placement after="org.eclipse.debug.ui.environmentTab" />
+		</tab>
+	</extension>
+	<extension
+		point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+		<launchConfigurationTabGroup
+			class="io.github.albert200000.dlangdt.launch.ui.LocalApplicationLaunchConfigurationTabGroup"
+			id="io.github.albert200000.dlangdt.launch.LocalApplicationLaunchConfigurationTabGroup"
+			type="io.github.albert200000.dlangdt.common.LocalApplicationLaunchConfigurationType">
+			<launchMode
+				mode="run">
+			</launchMode>
+		</launchConfigurationTabGroup>
+	</extension>
+</plugin>
