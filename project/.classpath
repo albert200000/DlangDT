@@ -4,4 +4,5 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" includepattern="*.**/output" name="io.github.albert200000.dlangdt.common"/>
 </classpath>

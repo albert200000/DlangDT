@@ -3,7 +3,7 @@ package io.github.albert200000.dlangdt.project.gomod.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.internal.resources.File;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -20,7 +20,7 @@ public abstract class DubModCommandsHandler extends AbstractHandler {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 
 		if (selection instanceof IStructuredSelection) {
-			File selectedFile = (File) ((IStructuredSelection) selection).getFirstElement();
+			IFile selectedFile = (IFile) ((IStructuredSelection) selection).getFirstElement();
 			IProject project = selectedFile.getProject();
 			DToolChain.asyncExecute(project, getDubParameters());
 		}

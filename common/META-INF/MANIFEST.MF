@@ -17,4 +17,6 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.119.100",
  org.eclipse.debug.ui;bundle-version="3.15.100"
 Import-Package: org.eclipse.ui.texteditor
 Export-Package: io.github.albert200000.dlangdt.common.preference,
- io.github.albert200000.dlangdt.common.utils
+  io.github.albert200000.dlangdt.common.tooling,
+  io.github.albert200000.dlangdt.common.utils
+
