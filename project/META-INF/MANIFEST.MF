@@ -10,3 +10,5 @@ Require-Bundle: io.github.albert200000.dlangdt.common;bundle-version="0.2.0",
  org.eclipse.ui.ide
 Automatic-Module-Name: io.github.albert200000.dlangdt.project
 Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: io.github.albert200000.dlangdt.project.builder,
+ io.github.albert200000.dlangdt.project.ui.widgets
