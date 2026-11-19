@@ -8,9 +8,6 @@
 		</builder>
 	</extension>
 	<extension id="DNature" name="DDT Project Nature" point="org.eclipse.core.resources.natures">
-		<runtime>
-			<run class="io.github.albert200000.dlangdt.project.builder.DNature"></run>
-		</runtime>
 		<builder id="io.github.albert200000.dlangdt.project.DBuilder"></builder>
 	</extension>
 	<extension point="org.eclipse.ui.commands">
