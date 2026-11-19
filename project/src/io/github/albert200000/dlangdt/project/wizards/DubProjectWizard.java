@@ -21,13 +21,13 @@ import org.eclipse.swt.widgets.Shell;
  * @author zshongyi
  *
  */
-public class DubModProjectWizard extends BasicNewProjectResourceWizard {
+public class DubProjectWizard extends BasicNewProjectResourceWizard {
 
 	@Override
 	public void addPages() {
 		super.addPages();
 		IWizardPage mainPage = this.getPage("basicNewProjectPage");
-		mainPage.setTitle("Create a D Mod Project");
+		mainPage.setTitle("Create a D Project");
 		mainPage.setImageDescriptor(ImageDescriptor.createFromFile(DIcons.class, DIcons.DDT_PROJECT_LARGE));
 	}
 
