@@ -40,7 +40,7 @@ public class DEnvPreferencePage extends FieldEditorPreferencePage implements IWo
 	@Override
 	protected void createFieldEditors() {
 
-		FileFieldEditor dPath = new FileFieldEditor(DEnvPreferenceConstants.D_BINARY_PATH, Messages.dPathLabel,
+		FileFieldEditor dPath = new FileFieldEditor(DEnvPreferenceConstants.DUB_BINARY_PATH, Messages.dPathLabel,
 				true, getFieldEditorParent()) {
 
 			@Override

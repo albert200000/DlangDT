@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package io.github.albert200000.dlangdt.common.tooling;
 
@@ -63,8 +63,8 @@ public class DToolChain {
 		protected void canceling() {
 			if (process != null && process.isAlive()) {
 				process.destroyForcibly();
+				super.canceling();
 			}
-			super.canceling();
 		}
 
 		@Override
@@ -72,7 +72,7 @@ public class DToolChain {
 
 			DToolChainConsole.bindProject(project);
 
-			commands.add(0, getDBinary());
+			commands.add(0, getDubBinary());
 			ProcessBuilder builder = new ProcessBuilder(commands);
 			builder.directory(project.getLocation().toFile());
 			String commandString = StringUtils.join(commands, " ");
@@ -143,13 +143,40 @@ public class DToolChain {
 		}
 	}
 
-	public static String getDBinary() {
-		String dBinary = DEnvPreferencePlugin.getPlugin().getPreferenceStore()
-				.getString(DEnvPreferenceConstants.D_BINARY_PATH);
-		if (dBinary.isBlank()) {
-			dBinary = System.getProperty("os.name").toLowerCase().startsWith("win") ? "d.exe" : "d";
+	public static String getDubBinary() {
+		String dubBinary = DEnvPreferencePlugin.getPlugin().getPreferenceStore()
+				.getString(DEnvPreferenceConstants.DUB_BINARY_PATH);
+		if (dubBinary.isBlank()) {
+			dubBinary = System.getProperty("os.name").toLowerCase().startsWith("win") ? "dub.exe" : "dub";
 		}
-		return dBinary;
+		return dubBinary;
+	}
+
+	/**
+	 * Checks if the dub executable is available in PATH or via DBinaryPath preference.
+	 * Runs `dub --version` with a 2-second timeout. Returns true if the command succeeds
+	 * (exit code 0), false otherwise (timeout, not found, or executable not runnable).
+	 */
+	public static boolean isDUBAvailable() {
+		String dubBinary = DEnvPreferencePlugin.getPlugin().getPreferenceStore()
+				.getString(DEnvPreferenceConstants.DUB_BINARY_PATH);
+		List<String> cmd = Arrays.asList("dub", "--version");
+		if (!dubBinary.isBlank()) {
+			cmd = Arrays.asList(dubBinary, "--version");
+		}
+		ProcessBuilder pb = new ProcessBuilder(cmd);
+		try {
+			Process proc = pb.start();
+			try {
+				proc.waitFor(2000, TimeUnit.SECONDS);
+				return proc.exitValue() == 0;
+			} catch (InterruptedException e) {
+				proc.destroyForcibly();
+				return false;
+			}
+		} catch (IOException e) {
+			return false;
+		}
 	}
 
 	public static void asyncExecute(IProject project, String[] commands) {

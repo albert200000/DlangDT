@@ -45,7 +45,7 @@ public class ServeDStreamConnectionProvider extends ProcessStreamConnectionProvi
         }
 
         String dBinaryPath = DEnvPreferencePlugin.getPlugin().getPreferenceStore()
-                .getString(DEnvPreferenceConstants.D_BINARY_PATH);
+                .getString(DEnvPreferenceConstants.DUB_BINARY_PATH);
         if (dBinaryPath == null || dBinaryPath.isBlank()) {
             return processBuilder;
         }

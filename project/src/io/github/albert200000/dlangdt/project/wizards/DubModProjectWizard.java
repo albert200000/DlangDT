@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package io.github.albert200000.dlangdt.project.wizards;
 
@@ -13,6 +13,9 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 import io.github.albert200000.dlangdt.common.tooling.DToolChain;
 import io.github.albert200000.dlangdt.project.builder.DNature;
 import io.github.albert200000.dlangdt.project.ui.icons.DIcons;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * @author zshongyi
@@ -34,7 +37,14 @@ public class DubModProjectWizard extends BasicNewProjectResourceWizard {
 
 		IProject newProject = getNewProject();
 
-		result &= DToolChain.syncExecute(newProject, new String[] { "init", "application", newProject.getName() });
+		if (!DToolChain.isDUBAvailable()) {
+			Shell activeShell = Display.getDefault().getActiveShell();
+			MessageDialog.openError(activeShell, "DUB tool not found",
+				"DUB tool not found. Please install DMD (and dub) from https://dlang.org/download.html or set the DBinaryPath preference to the `dub` binary location.");
+			return false;
+		}
+
+		result &= DToolChain.syncExecute(newProject, new String[] { "init", "-n" });
 		try {
 			IProjectDescription projectDescription = newProject.getDescription();
 			String[] prevNatures = projectDescription.getNatureIds();
