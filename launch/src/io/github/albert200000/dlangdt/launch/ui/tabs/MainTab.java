@@ -8,7 +8,9 @@ import java.util.List;
 
 import org.eclipse.cdt.launch.ui.CMainTab2;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -102,12 +104,26 @@ public class MainTab extends CMainTab2 {
 	}
 
 	@Override
+	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
+		String projectName = fProjText.getText().trim();
+		if (projectName.isEmpty()) {
+			configuration.setMappedResources(null);
+			return;
+		}
+		IProject project = getDProject(projectName);
+		if (project != null) {
+			configuration.setMappedResources(new IResource[] { project });
+		} else {
+			configuration.setMappedResources(null);
+		}
+	}
+
+	@Override
 	protected String handleBrowseButtonSelected(String title) {
 		FileDialog fileDialog = new FileDialog(getShell(), SWT.NONE);
 		fileDialog.setText(title);
 		IProject project = getDProject(fProjText.getText().trim());
 		if (project != null) {
-			fileDialog.setFileName(project.getLocation().toOSString());
 			fileDialog.setFilterPath(project.getLocation().toOSString());
 		}
 		return fileDialog.open();
