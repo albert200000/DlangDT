@@ -1,6 +1,15 @@
-/**
+/*******************************************************************************
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
  *
- */
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     zshongyi - GoDT
+ *     albert200000 - DlangDT
+ *******************************************************************************/
+
 package io.github.albert200000.dlangdt.common.tooling;
 
 import java.io.BufferedReader;
@@ -33,14 +42,10 @@ import io.github.albert200000.dlangdt.common.preference.DEnvPreferencePlugin;
 import io.github.albert200000.dlangdt.common.ui.consoles.DToolChainConsole;
 import io.github.albert200000.dlangdt.common.utils.LogUtils;
 
-/**
- * @author zshongyi
- *
- */
 public class DToolChain {
 
-	private static final ReentrantLock runningLock = new ReentrantLock(); // 执行状态锁
-	private static final ReentrantLock preemptiveLock = new ReentrantLock(); // 抢占锁
+	private static final ReentrantLock runningLock = new ReentrantLock(); // Execution status lock
+	private static final ReentrantLock preemptiveLock = new ReentrantLock();
 	private static final BlockingQueue<DCommandJob> jobQueue = new ArrayBlockingQueue<>(10);
 
 	private static final ExecutorService outputRedirectExecutor = Executors.newCachedThreadPool();
@@ -110,7 +115,7 @@ public class DToolChain {
 					}
 				});
 
-				// 等待进程结束或被取消
+				// Wait for the process to terminate or be cancelled
 				while (!monitor.isCanceled() && process.isAlive()) {
 					if (!process.waitFor(500, TimeUnit.MILLISECONDS)) {
 						continue;
@@ -232,7 +237,7 @@ public class DToolChain {
 					try {
 						job.join();
 					} catch (InterruptedException e) {
-						Thread.currentThread().interrupt(); // 恢复中断状态
+						Thread.currentThread().interrupt(); // Restore interrupt state
 					}
 				}
 				if (jobQueue.isEmpty()) {

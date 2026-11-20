@@ -1,6 +1,15 @@
-/**
- * 
- */
+/*******************************************************************************
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     zshongyi - GoDT
+ *     albert200000 - DlangDT
+ *******************************************************************************/
+
 package io.github.albert200000.dlangdt.editor.preference;
 
 import java.io.File;
@@ -14,15 +23,8 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import io.github.albert200000.dlangdt.editor.ui.Messages;
 
-/**
- * @author zshongyi
- *
- */
 public class ServeDPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
-	/**
-	 * 
-	 */
 	public ServeDPreferencePage() {
 		super(FieldEditorPreferencePage.GRID);
 		this.setPreferenceStore(ServeDPreferencePlugin.getPlugin().getPreferenceStore());
@@ -31,7 +33,6 @@ public class ServeDPreferencePage extends FieldEditorPreferencePage implements I
 	@Override
 	public void init(IWorkbench workbench) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

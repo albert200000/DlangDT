@@ -1,6 +1,15 @@
-/**
- * 
- */
+/*******************************************************************************
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     zshongyi - GoDT
+ *     albert200000 - DlangDT
+ *******************************************************************************/
+
 package io.github.albert200000.dlangdt.launch.ui.tabs;
 
 import java.util.LinkedList;
@@ -24,10 +33,6 @@ import io.github.albert200000.dlangdt.launch.ui.Messages;
 import io.github.albert200000.dlangdt.project.builder.DNature;
 import io.github.albert200000.dlangdt.project.ui.widgets.DProjectLabelProvider;
 
-/**
- * @author zshongyi
- *
- */
 public class MainTab extends CMainTab2 {
 
 	public static final String TAB_ID = "io.github.albert200000.dlangdt.launch.runApplicationLaunch.mainTab"; //$NON-NLS-1$

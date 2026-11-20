@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     zshongyi - GoDT
+ *     albert200000 - DlangDT
+ *******************************************************************************/
+
 package io.github.albert200000.dlangdt.editor.lsp4e.server;
 
 import java.io.File;
@@ -16,9 +28,6 @@ import io.github.albert200000.dlangdt.editor.preference.ServeDPreferenceConstant
 import io.github.albert200000.dlangdt.editor.preference.ServeDPreferencePage;
 import io.github.albert200000.dlangdt.editor.preference.ServeDPreferencePlugin;
 
-/**
- * @author zshongyi
- */
 public class ServeDStreamConnectionProvider extends ProcessStreamConnectionProvider {
 
     public ServeDStreamConnectionProvider() {

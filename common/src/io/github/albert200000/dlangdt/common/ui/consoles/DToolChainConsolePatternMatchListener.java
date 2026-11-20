@@ -1,6 +1,15 @@
-/**
- * 
- */
+/*******************************************************************************
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     zshongyi - GoDT
+ *     albert200000 - DlangDT
+ *******************************************************************************/
+
 package io.github.albert200000.dlangdt.common.ui.consoles;
 
 import java.io.File;
@@ -20,12 +29,9 @@ import org.eclipse.ui.console.TextConsole;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.texteditor.ITextEditor;
 
-/**
- * @author zshongyi
- *
- */
 public class DToolChainConsolePatternMatchListener implements IPatternMatchListener {
 
+	// TODO: fix this for dub output
 	private static final String MATCH_REGEX_PATTERN = "\\..*\\.d:\\d+:\\d+: .*: .*";
 	private TextConsole console;
 

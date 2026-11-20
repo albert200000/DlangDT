@@ -1,6 +1,15 @@
-/**
- * 
- */
+/*******************************************************************************
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     zshongyi - GoDT
+ *     albert200000 - DlangDT
+ *******************************************************************************/
+
 package io.github.albert200000.dlangdt.project.ui.widgets;
 
 import org.eclipse.core.resources.IProject;
@@ -11,10 +20,6 @@ import org.eclipse.swt.graphics.Image;
 
 import io.github.albert200000.dlangdt.project.ui.icons.DIcons;
 
-/**
- * @author zshongyi
- *
- */
 public class DProjectLabelProvider implements ILabelProvider {
 
 	private static final Image projectIcon = ImageDescriptor.createFromFile(DIcons.class, DIcons.DDT_PROJECT_SMALL)

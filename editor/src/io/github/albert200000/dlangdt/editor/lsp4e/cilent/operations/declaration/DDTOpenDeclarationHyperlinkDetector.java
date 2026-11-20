@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     zshongyi - GoDT
+ *     albert200000 - DlangDT
+ *******************************************************************************/
+
 package io.github.albert200000.dlangdt.editor.lsp4e.cilent.operations.declaration;
 
 import java.util.Collection;
@@ -31,14 +43,9 @@ import org.eclipse.lsp4j.jsonrpc.messages.Either;
 
 import io.github.albert200000.dlangdt.common.utils.LogUtils;
 
-//import io.github.albert200000.dlangdt.editor.ui.Messages;
-
 /**
  * Modify according to source file
  * org.eclipse.lsp4e.operations.declaration.OpenDeclarationHyperlinkDetector
- *
- * @author zshongyi
- *
  */
 public class DDTOpenDeclarationHyperlinkDetector extends AbstractHyperlinkDetector {
 

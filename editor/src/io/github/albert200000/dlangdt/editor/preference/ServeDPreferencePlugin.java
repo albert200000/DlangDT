@@ -1,14 +1,7 @@
-/**
- * 
- */
 package io.github.albert200000.dlangdt.editor.preference;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-/**
- * @author zshongyi
- *
- */
 public class ServeDPreferencePlugin extends AbstractUIPlugin {
 
 	private static ServeDPreferencePlugin plugin;

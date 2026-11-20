@@ -1,6 +1,15 @@
-/**
- * 
- */
+/*******************************************************************************
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     zshongyi - GoDT
+ *     albert200000 - DlangDT
+ *******************************************************************************/
+
 package io.github.albert200000.dlangdt.common.preference;
 
 import java.io.BufferedReader;
@@ -17,15 +26,8 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import io.github.albert200000.dlangdt.common.ui.Messages;
 
-/**
- * @author zshongyi
- *
- */
 public class DEnvPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
-	/**
-	 * 
-	 */
 	public DEnvPreferencePage() {
 		super(FieldEditorPreferencePage.GRID);
 		this.setPreferenceStore(DEnvPreferencePlugin.getPlugin().getPreferenceStore());
@@ -34,7 +36,6 @@ public class DEnvPreferencePage extends FieldEditorPreferencePage implements IWo
 	@Override
 	public void init(IWorkbench workbench) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -77,7 +78,6 @@ public class DEnvPreferencePage extends FieldEditorPreferencePage implements IWo
 
 		dPath.setFileExtensions(new String[] { getBinaryName() });
 		this.addField(dPath);
-
 	}
 
 	public static String getBinaryName() {

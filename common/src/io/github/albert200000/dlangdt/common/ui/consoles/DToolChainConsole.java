@@ -1,6 +1,15 @@
-/**
- * 
- */
+/*******************************************************************************
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     zshongyi - GoDT
+ *     albert200000 - DlangDT
+ *******************************************************************************/
+
 package io.github.albert200000.dlangdt.common.ui.consoles;
 
 import java.io.BufferedReader;
@@ -18,10 +27,6 @@ import org.eclipse.ui.console.IConsoleManager;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-/**
- * @author zshongyi
- *
- */
 public class DToolChainConsole {
 
 	private DToolChainConsole() {
@@ -46,8 +51,8 @@ public class DToolChainConsole {
 		consoleManager.addConsoles(new IConsole[] { console });
 		console.setConsoleAutoScrollLock(true);
 		console.addPatternMatchListener(new DToolChainConsolePatternMatchListener());
-		getConsoleStdout(); // 有效避免在线程中执行导致的线程阻塞
-		getConsoleStdErr(); // 同上
+		getConsoleStdout(); // Effectively avoids thread blocking caused by execution within a thread
+		getConsoleStdErr(); // Same as above
 		return console;
 	}
 

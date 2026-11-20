@@ -1,12 +1,5 @@
-/**
- * 
- */
 package io.github.albert200000.dlangdt.editor.preference;
 
-/**
- * @author zshongyi
- *
- */
 public class ServeDPreferenceConstants {
 
 	public static final String SERVED_PATH = "ServeDPath";

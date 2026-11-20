@@ -11,7 +11,10 @@
  *  Michał Niewrzał (Rogue Wave Software Inc.) - hyperlink range detection
  *  Lucas Bullen (Red Hat Inc.) - [Bug 517428] Requests sent before initialization
  *  Martin Lippert (Pivotal Inc.) - [Bug 561270] labels include more details now
+ *  zshongyi - GoDT
+ *  albert200000 - DlangDT
  *******************************************************************************/
+
 package io.github.albert200000.dlangdt.editor.lsp4e.cilent.operations.declaration;
 
 import java.net.URI;
@@ -36,9 +39,6 @@ import io.github.albert200000.dlangdt.common.utils.LogUtils;
 /**
  * Modify according to source file
  * org.eclipse.lsp4e.operations.declaration.LSBasedHyperlink
- *
- * @author zshongyi
- *
  */
 public class LSBasedHyperlink implements IHyperlink {
 
