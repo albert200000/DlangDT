@@ -50,18 +50,18 @@ public class DEnvPreferencePage extends FieldEditorPreferencePage implements IWo
 				String filePath = newValue.toString();
 				if (!filePath.equals("")) {
 					ProcessBuilder processBuilder = new ProcessBuilder();
-					processBuilder.command(filePath, "version");
+					processBuilder.command(filePath, "--version");
 					try {
 						Process process = processBuilder.start();
 						BufferedReader bufferedReader = new BufferedReader(
 								new InputStreamReader(process.getInputStream()));
 						String firstLine = bufferedReader.readLine();
-						Pattern pattern = Pattern.compile("^dub version (\\d+\\.){2}\\d+");
+						Pattern pattern = Pattern.compile("^DUB version (\\d+\\.){2}\\d+");
 						Matcher matcher = pattern.matcher(firstLine);
 						if (matcher.find()) {
 							setValid(true);
 						} else {
-							MessageDialog.openError(null, "Illegal File", "Not an available d binary file.");
+							MessageDialog.openError(null, "Illegal File", "Not an available dub binary file.");
 							setValid(false);
 						}
 					} catch (IOException e) {
@@ -81,10 +81,10 @@ public class DEnvPreferencePage extends FieldEditorPreferencePage implements IWo
 	}
 
 	public static String getBinaryName() {
-		String dBinary = "d";
+		String dBinary = "dub";
 		String os = System.getProperty("os.name");
 		if (os.toLowerCase().startsWith("win")) {
-			dBinary = "d.exe";
+			dBinary = "dub.exe";
 		}
 		return dBinary;
 	}
