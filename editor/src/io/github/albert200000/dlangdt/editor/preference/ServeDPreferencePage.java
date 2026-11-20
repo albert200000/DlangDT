@@ -39,7 +39,7 @@ public class ServeDPreferencePage extends FieldEditorPreferencePage implements I
 	protected void createFieldEditors() {
 
 		FileFieldEditor servedPath = new FileFieldEditor(ServeDPreferenceConstants.SERVED_PATH,
-				Messages.servedPathLabel, true, getFieldEditorParent()) {
+				Messages.servedubPathLabel, true, getFieldEditorParent()) {
 
 			@Override
 			protected void fireValueChanged(String property, Object oldValue, Object newValue) {
