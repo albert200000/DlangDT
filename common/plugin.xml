@@ -6,7 +6,7 @@
       <page
             class="io.github.albert200000.dlangdt.common.preference.CategoryPreferencePage"
             id="io.github.albert200000.dlangdt.common.preference.CategoryPreferencePage"
-            name="DDT">
+            name="DlangDT">
       </page>
       <page
             category="io.github.albert200000.dlangdt.common.preference.CategoryPreferencePage"

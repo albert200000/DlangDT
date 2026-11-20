@@ -33,7 +33,7 @@ public class DubProjectWizard extends BasicNewProjectResourceWizard {
 		super.addPages();
 		IWizardPage mainPage = this.getPage("basicNewProjectPage");
 		mainPage.setTitle("Create a D Project");
-		mainPage.setImageDescriptor(ImageDescriptor.createFromFile(DIcons.class, DIcons.DDT_PROJECT_LARGE));
+		mainPage.setImageDescriptor(ImageDescriptor.createFromFile(DIcons.class, DIcons.DlangDT_PROJECT_LARGE));
 	}
 
 	@Override

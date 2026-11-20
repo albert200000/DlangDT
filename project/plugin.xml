@@ -2,17 +2,17 @@
 <?eclipse version="3.4"?>
 <plugin>
 
-	<extension id="DBuilder" name="DDT Project Builder" point="org.eclipse.core.resources.builders">
+	<extension id="DBuilder" name="DlangDT Project Builder" point="org.eclipse.core.resources.builders">
 		<builder hasNature="true">
 			<run class="io.github.albert200000.dlangdt.project.builder.DBuilder"></run>
 		</builder>
 	</extension>
-	<extension id="DNature" name="DDT Project Nature" point="org.eclipse.core.resources.natures">
+	<extension id="DNature" name="DlangDT Project Nature" point="org.eclipse.core.resources.natures">
 		<builder id="io.github.albert200000.dlangdt.project.DBuilder"></builder>
 	</extension>
 	<extension point="org.eclipse.ui.commands">
-		<category id="io.github.albert200000.dlangdt.project.dNature.category" name="DDT Project Nature Commands"></category>
-		<command categoryId="io.github.albert200000.dlangdt.project.dNature.category" defaultHandler="io.github.albert200000.dlangdt.project.builder.AddRemoveDNatureHandler" id="io.github.albert200000.dlangdt.project.addRemoveDNature" name="Add/Remove DDT Project Nature"></command>
+		<category id="io.github.albert200000.dlangdt.project.dNature.category" name="DlangDT Project Nature Commands"></category>
+		<command categoryId="io.github.albert200000.dlangdt.project.dNature.category" defaultHandler="io.github.albert200000.dlangdt.project.builder.AddRemoveDNatureHandler" id="io.github.albert200000.dlangdt.project.addRemoveDNature" name="Add/Remove DlangDT Project Nature"></command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
 		<menuContribution locationURI="popup:org.eclipse.ui.projectConfigure?after=additions">

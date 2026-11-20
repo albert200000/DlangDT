@@ -6,7 +6,7 @@ public class Messages extends NLS {
 
 	public static String openDeclarationLabel;
 	public static String openReturnTypeLabel;
-	public static String enableDDTDeclarationLabel;
+	public static String enableDlangDTDeclarationLabel;
 	public static String dPathLabel;
 
 	public static String goPathLabel;

@@ -47,7 +47,7 @@ import io.github.albert200000.dlangdt.common.utils.LogUtils;
  * Modify according to source file
  * org.eclipse.lsp4e.operations.declaration.OpenDeclarationHyperlinkDetector
  */
-public class DDTOpenDeclarationHyperlinkDetector extends AbstractHyperlinkDetector {
+public class DlangDTOpenDeclarationHyperlinkDetector extends AbstractHyperlinkDetector {
 
 	@SuppressWarnings("restriction")
 	@Override

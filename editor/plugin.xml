@@ -62,10 +62,10 @@
 		point="org.eclipse.ui.workbench.texteditor.hyperlinkDetectors">
 		<hyperlinkDetector
 			activate="true"
-			class="io.github.albert200000.dlangdt.editor.lsp4e.cilent.operations.declaration.DDTOpenDeclarationHyperlinkDetector"
-			description="DDT D Source Editor Hyperlink Detector"
+			class="io.github.albert200000.dlangdt.editor.lsp4e.cilent.operations.declaration.DlangDTOpenDeclarationHyperlinkDetector"
+			description="DlangDT D Source Editor Hyperlink Detector"
 			id="io.github.albert200000.dlangdt.editor.d.HyperlinkDetector"
-			name="DDTEditorHyperlinkDetector"
+			name="DlangDTEditorHyperlinkDetector"
 			targetId="org.eclipse.ui.genericeditor.GenericEditor">
 		</hyperlinkDetector>
 	</extension>

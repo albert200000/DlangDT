@@ -63,9 +63,9 @@ public class ServeDPreferencePage extends FieldEditorPreferencePage implements I
 		servedPath.setFileExtensions(new String[] { getBinaryName() });
 		this.addField(servedPath);
 
-		BooleanFieldEditor enableDDTDeclaration = new BooleanFieldEditor(ServeDPreferenceConstants.DDT_DECLARATION,
-				Messages.enableDDTDeclarationLabel, getFieldEditorParent());
-		this.addField(enableDDTDeclaration);
+		BooleanFieldEditor enableDlangDTDeclaration = new BooleanFieldEditor(ServeDPreferenceConstants.DlangDT_DECLARATION,
+				Messages.enableDlangDTDeclarationLabel, getFieldEditorParent());
+		this.addField(enableDlangDTDeclaration);
 
 // TODO: We need to test on the macOS system whether the current version can load serve-d normally with this option disabled
 //		BooleanFieldEditor addDPath = new BooleanFieldEditor(ServeDPreferenceConstants.ADD_D_PATH,

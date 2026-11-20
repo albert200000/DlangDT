@@ -22,7 +22,7 @@ import io.github.albert200000.dlangdt.project.ui.icons.DIcons;
 
 public class DProjectLabelProvider implements ILabelProvider {
 
-	private static final Image projectIcon = ImageDescriptor.createFromFile(DIcons.class, DIcons.DDT_PROJECT_SMALL)
+	private static final Image projectIcon = ImageDescriptor.createFromFile(DIcons.class, DIcons.DlangDT_PROJECT_SMALL)
 			.createImage();
 
 	@Override
