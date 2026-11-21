@@ -31,8 +31,13 @@ import org.eclipse.ui.texteditor.ITextEditor;
 
 public class DToolChainConsolePatternMatchListener implements IPatternMatchListener {
 
-	// TODO: fix this for dub output
-	private static final String MATCH_REGEX_PATTERN = "\\..*\\.d:\\d+:\\d+: .*: .*";
+	// Matches:
+	//   source/app.d(6):
+	//   source/app.d(6,10):
+	//   object.Exception@source/app.d(6):
+	//   source/app.d:6:10:
+	private static final String MATCH_REGEX_PATTERN = "[^:(),\\s]*\\.d(?:\\([0-9]+(?:,[0-9]+)?\\)|:[0-9]+:[0-9]+):";
+
 	private TextConsole console;
 
 	@Override
@@ -47,34 +52,96 @@ public class DToolChainConsolePatternMatchListener implements IPatternMatchListe
 
 	@Override
 	public void matchFound(PatternMatchEvent event) {
-		try {
-			int separatorIndex;
-			int length;
-			String fileReferenceText = this.console.getDocument().get(event.getOffset(), event.getLength());
-			length = separatorIndex = fileReferenceText.indexOf(":");
+	    try {
+	        String fileReferenceText = this.console.getDocument().get(event.getOffset(), event.getLength());
 
-			String absoluteFilePath = fileReferenceText.substring(0, separatorIndex);
+	        int openParen = fileReferenceText.indexOf('(');
+	        int closeParen = -1;
+	        if (openParen != -1) {
+	            closeParen = fileReferenceText.indexOf(')', openParen);
+	        }
+	        int lastColon = fileReferenceText.lastIndexOf(':');
 
-			fileReferenceText = fileReferenceText.substring(separatorIndex + 1);
-			separatorIndex = fileReferenceText.indexOf(":");
-			length += separatorIndex + 1;
-			int lineNumber = Integer.parseInt(fileReferenceText.substring(0, separatorIndex));
+	        boolean isParenMarker = (openParen != -1 && closeParen != -1 && closeParen < lastColon);
 
-			IProject project = (IProject) console.getAttribute(DToolChainConsole.ATTRIBUTE_PROJECT);
+	        String absFilePath;
+	        int lineNumber;
 
-			File targetFile;
-			if (project == null) {
-				targetFile = new File(absoluteFilePath);
-			} else {
-				targetFile = new File(project.getLocation().toFile(), absoluteFilePath);
-			}
+	        if (isParenMarker) {
+	            absFilePath = fileReferenceText.substring(0, openParen);
+	            String lineColText = fileReferenceText.substring(openParen + 1, closeParen);
+	            String[] parts = lineColText.split(",");
+	            if (parts.length >= 1 && parts[0].matches("\\d+")) {
+	                lineNumber = Integer.parseInt(parts[0]);
+	            } else {
+	                return;
+	            }
+	        } else {
+	            int separatorIndex = fileReferenceText.indexOf(':');
+	            if (separatorIndex == -1) {
+	                return;
+	            }
+	            absFilePath = fileReferenceText.substring(0, separatorIndex);
 
-			IHyperlink hyperlink = makeHyperlink(targetFile, lineNumber);
-			this.console.addHyperlink(hyperlink, event.getOffset(), length);
-		} catch (NumberFormatException | BadLocationException exception) {
-			exception.printStackTrace();
-		}
+	            String rest = fileReferenceText.substring(separatorIndex + 1);
+	            separatorIndex = rest.indexOf(':');
+	            if (separatorIndex == -1) {
+	                return;
+	            }
+	            try {
+	                lineNumber = Integer.parseInt(rest.substring(0, separatorIndex));
+	            } catch (NumberFormatException e) {
+	                return;
+	            }
+	        }
 
+	        // Strip any "ExceptionType@" prefix (e.g. "object.Exception@source/app.d").
+	        int atIndex = absFilePath.lastIndexOf('@');
+	        if (atIndex != -1) {
+	            absFilePath = absFilePath.substring(atIndex + 1);
+	        }
+	        if (absFilePath.isEmpty()) {
+	            return;
+	        }
+
+	        IProject project = (IProject) console.getAttribute(DToolChainConsole.ATTRIBUTE_PROJECT);
+
+	        File targetFile;
+	        if (project == null) {
+	            targetFile = new File(absFilePath);
+	        } else {
+	            targetFile = new File(project.getLocation().toFile(), absFilePath);
+	        }
+
+	        IHyperlink hyperlink = makeHyperlink(targetFile, lineNumber);
+
+	        // --- Compute hyperlink region: only "app.d(6)" should be clickable ---
+	        // Work in absolute indices into fileReferenceText for everything below.
+	        int pathStart = (atIndex != -1) ? atIndex + 1 : 0;
+
+	        // Skip directory components: last '/' or '\' inside the path portion.
+	        int lastSlash = Math.max(
+	                fileReferenceText.lastIndexOf('/'),
+	                fileReferenceText.lastIndexOf('\\'));
+	        int fileNameStart;
+	        if (lastSlash >= pathStart) {
+	            fileNameStart = lastSlash + 1;
+	        } else {
+	            fileNameStart = pathStart;
+	        }
+
+	        // End of the clickable region: position of the trailing ':' (the last char).
+	        int linkEnd = fileReferenceText.length() - 1; // exclude trailing ':'
+
+	        if (linkEnd > fileNameStart) {
+	            this.console.addHyperlink(
+	                    hyperlink,
+	                    event.getOffset() + fileNameStart,
+	                    linkEnd - fileNameStart);
+	        }
+	    } catch (NumberFormatException | BadLocationException exception) {
+	        exception.printStackTrace();
+	    }
 	}
 
 	private static IHyperlink makeHyperlink(File targetFile, int lineNumber) {
