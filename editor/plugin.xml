@@ -4,7 +4,7 @@
 	<extension
 		point="org.eclipse.core.contenttype.contentTypes">
 		<content-type
-			id="io.github.albert200000.dlangdt.gosourcefile"
+			id="io.github.albert200000.dlangdt.dsourcefile"
 			name="D"
 			file-extensions="d,di,dh"
 			base-type="org.eclipse.core.runtime.text"
@@ -16,7 +16,7 @@
 		name="D Source Editor"
 		point="org.eclipse.ui.editors">
 		<editorContentTypeBinding
-			contentTypeId="io.github.albert200000.dlangdt.gosourcefile"
+			contentTypeId="io.github.albert200000.dlangdt.dsourcefile"
 			editorId="org.eclipse.ui.genericeditor.GenericEditor">
 		</editorContentTypeBinding>
 	</extension>
@@ -27,14 +27,14 @@
 			scopeName="source.d">
 		</grammar>
 		<scopeNameContentTypeBinding
-			contentTypeId="io.github.albert200000.dlangdt.gosourcefile"
+			contentTypeId="io.github.albert200000.dlangdt.dsourcefile"
 			scopeName="source.d">
 		</scopeNameContentTypeBinding>
 	</extension>
 	<extension
 		point="org.eclipse.tm4e.languageconfiguration.languageConfigurations">
 		<languageConfiguration
-			contentTypeId="io.github.albert200000.dlangdt.gosourcefile"
+			contentTypeId="io.github.albert200000.dlangdt.dsourcefile"
 			path="language-configurations/d.language-configuration.json">
 		</languageConfiguration>
 	</extension>
@@ -54,7 +54,7 @@
 			label="D Language Server">
 		</server>
 		<contentTypeMapping
-			contentType="io.github.albert200000.dlangdt.gosourcefile"
+			contentType="io.github.albert200000.dlangdt.dsourcefile"
 			id="io.github.albert200000.dlangdt.editor.lsp4e.server.served">
 		</contentTypeMapping>
 	</extension>
@@ -81,7 +81,7 @@
 	<extension
 		point="org.eclipse.ui.genericeditor.icons">
 		<icon
-			contentType="io.github.albert200000.dlangdt.gosourcefile"
+			contentType="io.github.albert200000.dlangdt.dsourcefile"
 			icon="icons/dSourceEditorIcon.png">
 		</icon>
 	</extension>
