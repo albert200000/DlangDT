@@ -5,11 +5,16 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -23,48 +28,39 @@ jobs:
 
       - name: Zip update site
         run: |
-          cd /DlangDT
+          set -euo pipefail
           zip -r update.zip target/update
 
       - name: Publish to GitHub Pages
         run: |
           set -euo pipefail
-          
-          # Get tag name (e.g., v1.2.3)
+
           TAG="${{ github.ref_name }}"
-          
-          # Configure git
+
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          
-          # Fetch gh-pages if it exists
+
           git fetch origin gh-pages 2>/dev/null || true
-          
-          # Checkout/create gh-pages branch
-          if git rev-parse --verify origin/gh-pages 2>/dev/null; then
+
+          if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
             git checkout -B gh-pages origin/gh-pages
           else
-            git checkout -b gh-pages
+            git checkout --orphan gh-pages
+            git rm -rf . 2>/dev/null || true
           fi
-          
-          # Create releases/<tag> directory
-          mkdir -p "gh-pages/releases/${TAG}"
-          
-          # Copy target/update contents into releases/<tag>
-          cp -r "target/update"/* "gh-pages/releases/${TAG}/"
-          
-          # Add and commit
-          git add "gh-pages/releases/${TAG}"
+
+          mkdir -p "releases/${TAG}"
+          cp -r target/update/. "releases/${TAG}/"
+
+          git add "releases/${TAG}"
           if git diff --cached --quiet; then
-            git commit --allow-empty -m "Publish update site ${TAG}"
+            echo "No changes to publish for ${TAG}"
           else
             git commit -m "Publish update site ${TAG}"
+            git push --force-with-lease origin gh-pages
           fi
-          
-          # Push with force-with-lease
-          git push --force-with-lease origin gh-pages
 
-      - name: Upload as GitHub Release
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
