@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.albert200000.dlangdt</groupId>
+    <artifactId>dlangdt</artifactId>
+    <version>0.3.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <tycho.version>5.0.4</tycho.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <eclipse.release>2026-03</eclipse.release>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>eclipse</id>
+            <layout>p2</layout>
+            <url>https://download.eclipse.org/releases/${eclipse.release}</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-maven-plugin</artifactId>
+                <version>${tycho.version}</version>
+            </extension>
+        </extensions>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <toolchains>
+                        <jdk>
+                            <id>JavaSE-21</id>
+                        </jdk>
+                    </toolchains>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-compiler-plugin</artifactId>
+                <version>${tycho.version}</version>
+                <configuration>
+                    <useJDK>BREE</useJDK>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>target-platform-configuration</artifactId>
+                <version>${tycho.version}</version>
+                <configuration>
+                    <executionEnvironment>JavaSE-21</executionEnvironment>
+                    <executionEnvironmentDefault>JavaSE-21</executionEnvironmentDefault>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <modules>
+        <module>common</module>
+        <module>editor</module>
+        <module>project</module>
+        <module>launch</module>
+        <module>feature</module>
+    </modules>
+</project>

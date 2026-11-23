@@ -1,1 +1,37 @@
-/.codegraph/
+### Eclipse / PDE ###
+.metadata/
+.codegraph/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*.log
+
+# Eclipse project files (werden neu generiert)
+*.launch
+*.prefs
+
+# Lokale Eclipse Settings
+.settings/
+
+### Maven ###
+target/
+
+### Java ###
+*.class
+
+### OS-specific ###
+.DS_Store
+Thumbs.db
+
+### Tycho ###
+**/target-platform/
+
+### Build artifacts ###
+*.jar
+*.war
+*.ear
+
+### IDE caches ###
+.project
