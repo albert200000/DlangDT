@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.albert200000.dlangdt</groupId>
         <artifactId>dlangdt</artifactId>
-        <version>0.3.2-SNAPSHOT</version>
+        <version>0.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     
