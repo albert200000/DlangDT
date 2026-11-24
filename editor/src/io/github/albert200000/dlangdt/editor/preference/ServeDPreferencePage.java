@@ -1,15 +1,3 @@
-/*******************************************************************************
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
- * which is available at https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Contributors:
- *     zshongyi - GoDT
- *     albert200000 - DlangDT
- *******************************************************************************/
-
 package io.github.albert200000.dlangdt.editor.preference;
 
 import java.io.File;
@@ -66,24 +54,6 @@ public class ServeDPreferencePage extends FieldEditorPreferencePage implements I
 		BooleanFieldEditor enableDlangDTDeclaration = new BooleanFieldEditor(ServeDPreferenceConstants.DlangDT_DECLARATION,
 				Messages.enableDlangDTDeclarationLabel, getFieldEditorParent());
 		this.addField(enableDlangDTDeclaration);
-
-// TODO: We need to test on the macOS system whether the current version can load serve-d normally with this option disabled
-//		BooleanFieldEditor addDPath = new BooleanFieldEditor(ServeDPreferenceConstants.ADD_D_PATH,
-//				Messages.addDPathBeforeRunServeD, getFieldEditorParent()) {
-//			@Override
-//			protected void fireStateChanged(String property, boolean oldValue, boolean newValue) {
-//				super.fireStateChanged(property, oldValue, newValue);
-//				for (LanguageServer languageServer : LanguageServiceAccessor.getActiveLanguageServers(
-//						capabilities -> LSPEclipseUtils.hasCapability(capabilities.getWorkspaceSymbolProvider()))) {
-//					// FIXME: not work
-//					if (languageServer instanceof ServeDStreamConnectionProvider) {
-//						languageServer.shutdown();
-//					}
-//				}
-//			}
-//		};
-//
-//		this.addField(addDPath);
 
 	}
 

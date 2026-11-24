@@ -8,7 +8,6 @@ public class Messages extends NLS {
 	public static String openReturnTypeLabel;
 	public static String enableDlangDTDeclarationLabel;
 	public static String servedubPathLabel;
-	public static String addDPathBeforeRunServeD;
 	public static String goplsPathLabel;
 	public static String addGoPathBeforeRunGopls;
 

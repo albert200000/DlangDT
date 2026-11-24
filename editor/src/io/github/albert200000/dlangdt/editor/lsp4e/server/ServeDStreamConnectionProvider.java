@@ -1,15 +1,3 @@
-/*******************************************************************************
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
- * which is available at https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Contributors:
- *     zshongyi - GoDT
- *     albert200000 - DlangDT
- *******************************************************************************/
-
 package io.github.albert200000.dlangdt.editor.lsp4e.server;
 
 import java.io.File;
@@ -46,39 +34,6 @@ public class ServeDStreamConnectionProvider extends ProcessStreamConnectionProvi
     protected ProcessBuilder createProcessBuilder() {
         ProcessBuilder processBuilder = super.createProcessBuilder();
         Map<String, String> env = processBuilder.environment();
-
-        boolean addDPath = ServeDPreferencePlugin.getPlugin().getPreferenceStore()
-                .getBoolean(ServeDPreferenceConstants.ADD_D_PATH);
-        if (!addDPath) {
-            return processBuilder;
-        }
-
-        String dBinaryPath = DEnvPreferencePlugin.getPlugin().getPreferenceStore()
-                .getString(DEnvPreferenceConstants.DUB_BINARY_PATH);
-        if (dBinaryPath == null || dBinaryPath.isBlank()) {
-            return processBuilder;
-        }
-
-        String dPath = new File(dBinaryPath).getParent();
-        if (dPath == null) {
-            return processBuilder;
-        }
-
-        String currentPath = env.get("PATH");
-        if (currentPath == null) {
-            currentPath = env.get("Path"); // Windows fallback
-        }
-        if (currentPath != null) {
-            for (String path : currentPath.split(File.pathSeparator)) {
-                if (dPath.equals(path)) {
-                    return processBuilder;
-                }
-            }
-            env.put("PATH", dPath + File.pathSeparator + currentPath);
-        } else {
-            env.put("PATH", dPath);
-        }
-
         return processBuilder;
     }
 
